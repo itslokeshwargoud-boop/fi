@@ -1,0 +1,36 @@
+{
+  "_comment": "Configurable seed for the NC real-world validation runner. These are well-known PUBLIC Telugu YouTube channels/targets used as discovery queries; the collector resolves them via the YouTube Data API. Edit freely to match your 50-channel validation set. NOTE: this file contains only query/reference strings — NO metrics.",
+  "targets": [
+    "Prabhas",
+    "Pawan Kalyan",
+    "Allu Arjun"
+  ],
+  "channels": {
+    "news": [
+      "TV9 Telugu", "NTV Telugu", "Sakshi TV", "ETV Andhra Pradesh",
+      "ABN Telugu", "V6 News Telugu", "10TV News Telugu", "Mahaa News",
+      "TV5 News Telugu", "Raj News Telugu"
+    ],
+    "entertainment": [
+      "Aha Telugu", "Zee Telugu", "Star Maa", "ETV Telugu", "Gemini TV",
+      "Telugu FilmNagar", "Mango Telugu Cinema", "Aditya Music",
+      "Volga Video", "Shreyas Media"
+    ],
+    "commentary": [
+      "Tollywood Nagar", "Telugu Cinema Brother", "Chai Bisket",
+      "Filmy Focus Telugu", "Gulte", "123telugu", "Telugu One",
+      "Cinema Garage", "Movie Mahal", "Tollywood Tales"
+    ],
+    "fan": [
+      "Prabhas Fans", "Pawan Kalyan Fans", "Mahesh Babu Fans",
+      "NTR Fans", "Allu Arjun Fans", "Ram Charan Fans",
+      "Vijay Devarakonda Fans", "Nani Fans", "Balakrishna Fans",
+      "Chiranjeevi Fans"
+    ],
+    "influencer": [
+      "Telugu Vlogs", "My Village Show", "Anil Geela", "Aware Telugu",
+      "Telugu Tech Tuts", "Voice of Telugu", "Telugu Badi",
+      "Reacting Telugu", "Telugu Roast", "Common Man Telugu"
+    ]
+  }
+}

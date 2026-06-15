@@ -1,0 +1,39 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpq-dev \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# --- NC optional model runtime ---------------------------------------------
+# The NC module's heavy layers are optional and lazy-loaded; the deterministic
+# pipeline runs without any of the below. To enable them, uncomment:
+#   - ffmpeg            : required by Whisper for audio decoding
+#   - libgl1/libglib2.0 : required by EasyOCR (OpenCV) for thumbnail OCR
+# RUN apt-get update && apt-get install -y \
+#     ffmpeg libgl1 libglib2.0-0 \
+#     && rm -rf /var/lib/apt/lists/*
+# Then add the model extras (see the optional block in requirements.txt):
+# RUN pip install --no-cache-dir openai-whisper yt-dlp easyocr detoxify \
+#     sentence-transformers faiss-cpu
+# For GPU, base this image on an nvidia/cuda runtime and install faiss-gpu.
+# ---------------------------------------------------------------------------
+
+# Install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application code
+COPY . .
+
+# Create non-root user
+RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
+USER appuser
+
+EXPOSE 8000
+
+CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]
